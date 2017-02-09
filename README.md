@@ -2,6 +2,15 @@
 
 Work in progress. This is a simple todo list app built with React, Redux and Webpack. This app is based off the app on [Kurt Weiberth's React + Redux + Webpack YouTube tutorial](https://www.youtube.com/playlist?list=PLQDnxXqV213JJFtDaG0aE9vqvp6Wm7nBg).
 
+## Features
+* Babel ES6/ES2015 Transpiler
+* ExpressJS
+* Hot Module Reloading
+* React
+* Redux
+* Thunks
+* Webpack
+
 ## Installation
 Clone the repo, install the node_modules and install Nodemon monitoring utility globally on your machine.
 ```

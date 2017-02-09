@@ -4,8 +4,7 @@ function getId(todos) {
   }, -1) + 1;
 }
 
-// todoReducer reduces the todo object with todo-associated actions.
-let todoReducer = (todos = [], action) => {
+export default function todos(todos = [], action) {
   switch (action.type) {
     // 'ADD_TODO' merges a new todo with a spread of todos currently in the store.
     // A new todo is assigned a unique ID so that future todos don't share IDs
@@ -33,5 +32,3 @@ let todoReducer = (todos = [], action) => {
       return todos;
   }
 }
-
-export default todoReducer;

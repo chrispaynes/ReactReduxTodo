@@ -63,7 +63,7 @@ appa42ff67c424cde8c1dd7bundle.js    3.35 MB       0  [emitted]  app
 chunk    {0} appa42ff67c424cde8c1dd7bundle.js (app) 1.19 MB [rendered]
 ```
 
-Visit `http://localhost:8000` to use the app.
+Visit `http://localhost:8080` to use the app.
 
 
 #### Run using Nodemon

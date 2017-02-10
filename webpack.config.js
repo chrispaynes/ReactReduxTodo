@@ -26,25 +26,42 @@ module.exports = {
     })
     ],
 
+  // Loaders receive query parameters via a query string (just like in the web).
+  // Webpack appends the query string to the loader with ?. i.e. url-loader?mimetype=image/png.
   module: {
     loaders: [
-      // Extract JavaScript files
       {
+        // JavaScript files
         test: /\.js$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         exclude: /node_modules/,
         // query tells babel what to do with each js file during transpiling.
-        query: { presets: ['react', 'es2015', 'react-hmre'] }
-            }, {
+        // 'transform-runtime' namespaces helpers and builtins,
+        // automatically polyfilling them code to prevent global namespace pollution.
+        // 'transform-runtime' plugin tells babel to require the runtime
+        // instead of inlining it.
+        query: {
+          presets: ['react', 'es2015', 'react-hmre'],
+          plugins: ['transform-runtime'],
+          cacheDirectory: true
+        }
+      },
+      {
+        // HTML files
         test: /\.html$/,
         loader: 'raw-loader'
-        },
+      },
       {
-        // Extract CSS files
+        // CSS files
         test: /client\css\/\.css$/,
         loader: ExtractTextPlugin.extract("style-loader", "css-loader")
       }
-        ]
+    ]
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    inline: true,
+    stats: "errors-only"
   }
 
 }

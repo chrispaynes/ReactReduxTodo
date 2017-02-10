@@ -1,45 +1,50 @@
-//optimize.OccurenceOrderPlugin
-//Assign the module and chunk ids by occurrence count. Ids used often get lower/shorter ids. This make ids predictable, reduces file size.
-//HotModuleReplacementPlug
-//Enables Hot Module Replacement. Generates Hot Update Record Chunks 
-//NoErrorsPlugin
-//skips compiling if there are errors 
-//react-hmre allows babel to talk to webpack
-var webpack = require('webpack');
+const webpack = require('webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
-  devtool: 'inline-source-map', //for production env, displays console error linking to source find instead of bundle.js
-  entry: [
-            'webpack-hot-middleware/client', //webpack needs to know another entry point
-            './client/client.js'
-           ], //entry point for the app
+  devtool: 'inline-source-map', //inline-source-map displays console errors linked to source files.
+  context: path.join(__dirname),
+  entry: {
+    app: ['webpack-hot-middleware/client', './client/client.js']
+  },
   output: {
-    path: '/dist',
-    filename: 'bundle.js',
-    publicPath: '/'
+    path: path.join(__dirname, 'dist'),
+    // outputs custom bundle + hash for each entry point 
+    filename: '[name][hash]bundle.js'
   },
   plugins: [
        new webpack.optimize.OccurenceOrderPlugin(),
        new webpack.HotModuleReplacementPlugin(),
-       new webpack.NoErrorsPlugin()
+       new webpack.NoErrorsPlugin(),
+       new ExtractTextPlugin("bundle.css"),
+       new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.join(__dirname, "client", 'index.html'),
+      inject: true
+    })
     ],
-  module: { //define tasks for webpack to perform while bundling
-    loaders: [ //load a file to perform a task with it, each file is an obj. with a test property using regex
-      { //if there is a file with .js at the end, perform the loader on it
+
+  module: {
+    loaders: [
+      // Extract JavaScript files
+      {
         test: /\.js$/,
-        loader: 'babel-loader',
+        loader: 'babel',
         exclude: /node_modules/,
-        query: { //same as setting up a babelrc file on the app root, query tells babel what to do with each js file
-          presets: ['react', 'es2015', 'react-hmre']
-        }
-            }
+        // query tells babel what to do with each js file during transpiling.
+        query: { presets: ['react', 'es2015', 'react-hmre'] }
+            }, {
+        test: /\.html$/,
+        loader: 'raw-loader'
+        },
+      {
+        // Extract CSS files
+        test: /client\css\/\.css$/,
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+      }
         ]
-
   }
-}
 
-//via command line: "$webpack --config webpack.config.js" grabs this webpack.config file for manually creating bundle.js
-//after bundling, serve via "$npm run serve"
-//webpack serves files and mimics a bundle.js file.
-//componenet files are monitored but do not trigger a bundle.js update.
-//webpack will "Hot Reload" by mimicing the new bundle.js
+}

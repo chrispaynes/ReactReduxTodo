@@ -13,6 +13,7 @@ export default function todos(todos = [], action) {
         text: action.text,
         completed: false,
         timestamp: action.timestamp,
+        author: action.author,
         id: getId(todos)
                 }, ...todos];
 
@@ -33,3 +34,4 @@ export default function todos(todos = [], action) {
       return todos;
   }
 }
+

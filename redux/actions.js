@@ -4,11 +4,12 @@ Components call these actions to activate events. Each action.type will coordina
 with a reducer event from reducer.js
 */
 let actions = {
-  addTodo: (text, timestamp) => {
+  addTodo: (text, timestamp, author) => {
     return {
       type: 'ADD_TODO',
       text: text,
-      timestamp: timestamp
+      timestamp: timestamp,
+      author: author
     }
   },
 

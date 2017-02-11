@@ -3,37 +3,30 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 
-class TodoInput extends Component {
 
+class TodoInput extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      inputText: "",
-      timestamp: ""
+      inputText: ""
     }
   }
 
   // handleChange listens for and detects text input box changes.
   handleChange(event) {
-    console.log('changed detected');
-    console.log(this);
-    console.log(this.state.inputText);
-    console.log(event); //creates a SyntheticEvent with a { type: "change" }
-    console.log(event.target); //prior to text input change, this value is null
-    console.log(event.target.value); //after inputing text, the target has a value.
-    this.setState({ //every component has this, it notifies state that there is a change
-      inputText: event.target.value //sets the state's, inputText property to match the event.target's value
+    this.setState({
+      inputText: event.target.value
     })
   }
 
-
   handleSubmit(event) {
-    console.log("EVENT", event);
     event.preventDefault();
-    console.log('submit button clicked');
-    this.props.addTodo(this.state.inputText, moment().format('MMMM Do YYYY, h:mm:ss a')); //this is not part of actions.js so it does not use this.props.actions....
+    this.props.addTodo(this.state.inputText,
+      moment().format('MMMM Do YYYY, h:mm:ss a'), this.props.user);
     this.state.inputText = "";
   }
+
+
 
   // pass in this.state.input.text as a pseudo attribute to the dumb TextDisplay component
   // this creates a this.props.text property for TextDisplay component

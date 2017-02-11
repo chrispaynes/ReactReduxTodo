@@ -13,6 +13,7 @@ class TodoItem extends Component {
   render() {
     return (
       <li className="todoItem">{this.props.todo.text}
+        <span className="todoItemAuthor">Added By: {this.props.todo.author.name}</span>
         <span className="todoItemTimestamp">Created at: {this.props.todo.timestamp}</span>
         <button onClick={this.handleComplete.bind(this)}>Mark as completed</button>
         <button onClick={this.handleDelete.bind(this)}>Delete Todo</button>

@@ -1,20 +1,30 @@
 import React, { Component } from 'react'
 
 class UserInfo extends Component {
+  constructor(props, context) {
 
+    super(props, context)
+    this.state = {
+      user: {
+        name: this.props.user.name,
+        id: this.props.user.id
+      }
+    }
+  }
+
+  // handleNewId dispatches createNewUserId() from action.js
   handleNewId() {
-    //dispatch action from action.js
-    this.props.actions.createNewUserId()
+    this.props.actions.createNewUserId();
   }
 
+  // handleNewIdIfOdd dispatches createNewUserIdIfOdd() from action.js
   handleNewIdIfOdd() {
-    //dispatch action from action.js
-    this.props.actions.createNewUserIdIfOdd()
+    this.props.actions.createNewUserIdIfOdd();
   }
 
+  // handleNewIdAsync dispatches createNewUserIdAsync() from action.js
   handleNewIdAsync() {
-    //dispatch action from action.js
-    this.props.actions.createNewUserIdAsync()
+    this.props.actions.createNewUserIdAsync();
   }
 
   render() {
@@ -34,4 +44,4 @@ class UserInfo extends Component {
 
 }
 
-export default UserInfo
+export default UserInfo;

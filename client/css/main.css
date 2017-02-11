@@ -1,0 +1,50 @@
+* {
+  text-decoration: none;
+  list-style: none;
+}
+
+body,
+html {
+  background-color: #edeeef;
+  font-family: 'Montserrat', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.bodyContainer {
+  padding: 0 4em;
+}
+
+input {
+  outline: none;
+  background-color: inherit;
+}
+
+
+/* TODO COMPONENT */
+
+.todoList {
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.todoItem {
+  border-top: solid 1px;
+  padding: 1em 0 0 0;
+  margin: 0 1em 1em 0;
+  /* border: solid 1px; */
+  flex: 1 0 45%;
+}
+
+.todoItem > span {
+  display: block;
+}
+
+footer {
+  background-color: #26454c;
+  color: white;
+  height: 100px;
+}

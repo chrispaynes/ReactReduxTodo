@@ -9,15 +9,49 @@ html {
   font-family: 'Montserrat', sans-serif;
   padding: 0;
   margin: 0;
+  height: 100%;
+}
+
+hr {
+  border: none;
+  height: 1px;
 }
 
 .bodyContainer {
   padding: 0 4em;
+  min-height: 100%;
+  /* set equal to footer height */
+  margin-bottom: -150px;
+}
+
+.bodyContainer:after {
+  content: "";
+  display: block;
+}
+
+footer,
+.bodyContainer:after {
+  height: 150px;
 }
 
 input {
   outline: none;
   background-color: inherit;
+}
+
+
+/* APP COMPONENT */
+
+.appTitle {
+  color: #ff5000;
+  font-size: 2.75em;
+  margin: 1em 0 0 0;
+}
+
+.appHR {
+  height: .25em;
+  background-color: lightgray;
+  margin: 0 0 2em 0;
 }
 
 
@@ -35,7 +69,6 @@ input {
   border-top: solid 1px;
   padding: 1em 0 0 0;
   margin: 0 1em 1em 0;
-  /* border: solid 1px; */
   flex: 1 0 45%;
 }
 
@@ -43,8 +76,13 @@ input {
   display: block;
 }
 
+.todoItemTimestamp {
+  font-size: 0.75em;
+  font-weight: 300;
+}
+
 footer {
   background-color: #26454c;
   color: white;
-  height: 100px;
+  /*height: 100px;*/
 }

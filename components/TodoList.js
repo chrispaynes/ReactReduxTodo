@@ -10,16 +10,15 @@ class TodoList extends Component {
   //map over all todos and return them as li elements with keys and the text from the todo
   //when mapping over elements a key/id must be supplied so react can keep track of each element
   render() {
-    return ( < div >
-      < ul > {
-        this.props.todos.map((todo) => {
-          return <TodoItem key = { todo.id }
-          todo = { todo }
-          actions = { this.props.actions }
-          />
-        })
-      } < /ul> < /div >
-    )
+    return (
+      <div>
+        <ul className="todoList">{
+          this.props.todos.map((todo) => {
+            return <TodoItem key={todo.id} todo={todo} actions={this.props.actions}/>
+          })
+        }</ul>
+      </div>
+    );
   }
 
 }

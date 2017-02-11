@@ -18,10 +18,17 @@ class UserInfo extends Component {
   }
 
   render() {
-    return ( < div >
-      < li >
-      < div > Username: { this.props.user.username } < /div> < div > ID: { this.props.user.id } < /div > < button onClick = { this.handleNewId.bind(this) } > Update with new ID < /button> < button onClick = { this.handleNewIdIfOdd.bind(this) } > Update with new ID
-      if ID is odd number < /button> < button onClick = { this.handleNewIdAsync.bind(this) } > Update with new ID Asynchronously < /button > < /li> < /div >
+    return (
+      <div>
+        <li>
+          <div>Username: {this.props.user.username}</div>
+          <div>ID: {this.props.user.id}</div>
+          <button onClick={this.handleNewId.bind(this)}>Update with new ID</button>
+          <button onClick={this.handleNewIdIfOdd.bind(this)}>Update with new ID
+          if ID is odd number </button>
+          <button onClick={this.handleNewIdAsync.bind(this)}>Update with new ID Asynchronously</button>
+      </li>
+    </div>
     )
   }
 

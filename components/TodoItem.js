@@ -11,10 +11,12 @@ class TodoItem extends Component {
   }
 
   render() {
-    return ( < div >
-      < li >
-      < div > { this.props.todo.text } < /div> < button onClick = { this.handleComplete.bind(this) } > Mark as completed < /button > < button onClick = { this.handleDelete.bind(this) } > Delete Todo < /button> < /li > < /div>
-    )
+    return (
+      <li className="todoItem">{this.props.todo.text}
+        <button onClick={this.handleComplete.bind(this)}>Mark as completed</button>
+        <button onClick={this.handleDelete.bind(this)}>Delete Todo</button>
+      </li>
+    );
   }
 
 }

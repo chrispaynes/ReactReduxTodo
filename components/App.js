@@ -25,13 +25,15 @@ import UserInfo from './UserInfo'
 
 class App extends Component {
   render() {
-    return ( < div className = "" >
-      < h1 > Todo List < /h1> < UserInfo user = { this.props.user }
-      actions = { this.props.actions }
-      /> < TodoInput addTodo = { this.props.actions.addTodo } / > < TodoList actions = { this.props.actions }
-      todos = { this.props.todos }
-      /> < /div >
-    )
+    return (
+      <div className>
+        <h1>Todo List</h1>
+        <hr></hr>
+        <UserInfo user={this.props.user} actions={this.props.actions}/>
+        <TodoInput addTodo={this.props.actions.addTodo} />
+        <TodoList actions={this.props.actions} todos={this.props.todos}/>
+      </div>
+    );
   }
 }
 

@@ -11,7 +11,7 @@ class TodoInput extends Component {
     }
   }
 
-  //event listener that detects changes to the text entry box, it must have event info passed in
+  // handleChange listens for and detects text input box changes.
   handleChange(event) {
     console.log('changed detected');
     console.log(this);
@@ -24,26 +24,28 @@ class TodoInput extends Component {
     })
   }
 
+
   handleSubmit(event) {
-    event.preventDefault()
+    console.log("EVENT", event);
+    event.preventDefault();
     console.log('submit button clicked');
-    this.props.addTodo(this.state.inputText) //this is not part of actions.js so it does not use this.props.actions....
+    this.props.addTodo(this.state.inputText); //this is not part of actions.js so it does not use this.props.actions....
+    this.state.inputText = "";
   }
 
-  //pass in this.state.input.text as a pseudo attribute to the dumb TextDisplay component
-  //this creates a this.props.text property for TextDisplay component
-  //to allow user to hit return and submit new todo, remove the button and add input element
+  // pass in this.state.input.text as a pseudo attribute to the dumb TextDisplay component
+  // this creates a this.props.text property for TextDisplay component
+  // to allow user to hit return and submit new todo, remove the button and add input element
   render() {
-    return ( < div >
-      < form onSubmit = { this.handleSubmit.bind(this) } >
-      < input type = "text"
-      placeholder = "type todo here"
-      value = { this.state.inputText }
-      onChange = { this.handleChange.bind(this) }
-      /> < input type = "submit"
-      text = "submit" / >
-      < /form> < /div>
-    )
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit.bind(this)}>
+          <input type="text" defaultValue="" placeholder="type todo here" value={this.state.inputText}
+            onChange={this.handleChange.bind(this)}></input>
+          <input type="submit" text="submit"></input>
+        </form>
+      </div>
+    );
   }
 
 }

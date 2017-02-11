@@ -1,13 +1,15 @@
 //create the HTML-like module with the same name as the component name and filename
 //handleChange is a method of the TextInput class component, bind(this) adds the global object to handleChange FN, otherwise it is undefined
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import moment from 'moment';
 
 class TodoInput extends Component {
 
   constructor(props, context) {
     super(props, context)
     this.state = {
-      inputText: ""
+      inputText: "",
+      timestamp: ""
     }
   }
 
@@ -29,7 +31,7 @@ class TodoInput extends Component {
     console.log("EVENT", event);
     event.preventDefault();
     console.log('submit button clicked');
-    this.props.addTodo(this.state.inputText); //this is not part of actions.js so it does not use this.props.actions....
+    this.props.addTodo(this.state.inputText, moment().format('MMMM Do YYYY, h:mm:ss a')); //this is not part of actions.js so it does not use this.props.actions....
     this.state.inputText = "";
   }
 

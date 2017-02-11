@@ -4,10 +4,11 @@ Components call these actions to activate events. Each action.type will coordina
 with a reducer event from reducer.js
 */
 let actions = {
-  addTodo: (text) => {
+  addTodo: (text, timestamp) => {
     return {
       type: 'ADD_TODO',
-      text: text
+      text: text,
+      timestamp: timestamp
     }
   },
 
@@ -27,9 +28,11 @@ let actions = {
   },
 
   createNewUserId: () => {
+    let id = Math.floor(Math.random() * 100);
     return {
       type: 'CREATE_USER_ID',
-      id: Math.floor(Math.random() * 100)
+      id: id,
+      name: `User${id}`
     }
   },
 

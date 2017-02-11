@@ -12,6 +12,7 @@ export default function todos(todos = [], action) {
       return [{
         text: action.text,
         completed: false,
+        timestamp: action.timestamp,
         id: getId(todos)
                 }, ...todos];
 

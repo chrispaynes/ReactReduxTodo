@@ -26,9 +26,9 @@ import UserInfo from './UserInfo'
 class App extends Component {
   render() {
     return (
-      <div className>
-        <h1>Todo List</h1>
-        <hr></hr>
+      <div>
+        <h1 className="appTitle">Todo List</h1>
+        <hr className="appHR"></hr>
         <UserInfo user={this.props.user} actions={this.props.actions}/>
         <TodoInput addTodo={this.props.actions.addTodo} />
         <TodoList actions={this.props.actions} todos={this.props.todos}/>

@@ -22,27 +22,31 @@ import { render } from 'react-dom'
 import App from '../components/App'
 import configureStore from '../redux/store'
 import { Provider } from 'react-redux'
+import moment from 'moment';
+import actions from '../redux/actions';
 require("./css/main.css");
-
 
 let initialState = {
   todos: [{
     id: 0,
     completed: false,
-    text: 'initial text for initialState'
+    text: 'Initial todo.text',
+    timestamp: moment().format('MMMM Do YYYY, h:mm:ss a'),
+    author: {
+      name: 'Initial author.name',
+      id: 0
+    },
     }],
-  user: {
-    name: 'Chris',
-    id: 44
-  }
+  user: actions.createNewUserId()
 }
 
 // store represents the stored configured with an initial preloaded state.
 let store = configureStore(initialState)
 
 // render mounts the Provider with store around the application.
-render( < Provider store = { store } >
-  < App / >
-  < /Provider>,
+render(
+  <Provider store={store}>
+    <App/>
+  </Provider>,
   document.getElementById('app')
-)
+);

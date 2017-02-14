@@ -18,10 +18,18 @@ export default function todos(todos = [], action) {
                 }, ...todos];
 
       // COMPLETE_TODO returns completed todo if the todo.id matches, if not then return the current todo.
+      // Object.assign copies an enumerables's key/value pairs to a target object and returns the object.
     case 'COMPLETE_TODO':
       return todos.map((todo) => {
         return todo.id === action.id ?
           Object.assign({}, todo, { completed: !todo.completed }) : todo;
+      })
+
+      // COMPLETE_TODO returns completed todo if the todo.id matches, if not then return the current todo.
+    case 'UNDO_COMPLETE_TODO':
+      return todos.map((todo) => {
+        return todo.id === action.id ?
+          Object.assign({}, todo, { completed: !!todo.completed }) : todo;
       })
 
       // 'DELETE_TODO' filters the deleted todo and returns all unfiltered todos.

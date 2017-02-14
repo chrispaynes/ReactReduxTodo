@@ -26,6 +26,7 @@ import moment from 'moment';
 import actions from '../redux/actions';
 require("./css/main.css");
 
+let seedAuthorID = actions.createNewUserId().id;
 let initialState = {
   todos: [{
     id: 0,
@@ -33,8 +34,8 @@ let initialState = {
     text: 'Initial todo.text',
     timestamp: moment().format('MMMM Do YYYY, h:mm:ss a'),
     author: {
-      name: 'Initial author.name',
-      id: 0
+      id: seedAuthorID,
+      name: `User${seedAuthorID}`
     },
     }],
   user: actions.createNewUserId()

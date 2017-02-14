@@ -14,10 +14,20 @@ let actions = {
   },
 
   // Adding ID as a property binds the id to the action.
-  completeTodo: (id) => {
+  completeTodo: (id, color) => {
     return {
       type: 'COMPLETE_TODO',
-      id: id
+      id: id,
+      color: color
+    }
+  },
+
+  // Adding ID as a property binds the id to the action.
+  undoCompleteTodo: (id, color) => {
+    return {
+      type: 'UNDO_COMPLETE_TODO',
+      id: id,
+      color: color
     }
   },
 

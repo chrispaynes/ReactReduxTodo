@@ -31,6 +31,7 @@ let initialState = {
   todos: [{
     id: 0,
     completed: false,
+    strikethrough: false,
     text: 'Initial todo.text',
     timestamp: moment().format('MMMM Do YYYY, h:mm:ss a'),
     author: {

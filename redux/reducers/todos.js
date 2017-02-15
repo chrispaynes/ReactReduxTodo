@@ -12,6 +12,7 @@ export default function todos(todos = [], action) {
       return [{
         text: action.text,
         completed: false,
+        strikethrough: false,
         timestamp: action.timestamp,
         author: action.author,
         id: getId(todos)
@@ -22,14 +23,14 @@ export default function todos(todos = [], action) {
     case 'COMPLETE_TODO':
       return todos.map((todo) => {
         return todo.id === action.id ?
-          Object.assign({}, todo, { completed: !todo.completed }) : todo;
+          Object.assign({}, todo, { completed: true, strikethrough: true }) : todo;
       })
 
       // COMPLETE_TODO returns completed todo if the todo.id matches, if not then return the current todo.
     case 'UNDO_COMPLETE_TODO':
       return todos.map((todo) => {
         return todo.id === action.id ?
-          Object.assign({}, todo, { completed: !!todo.completed }) : todo;
+          Object.assign({}, todo, { completed: false, strikethrough: false }) : todo;
       })
 
       // 'DELETE_TODO' filters the deleted todo and returns all unfiltered todos.

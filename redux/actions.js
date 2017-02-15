@@ -9,25 +9,23 @@ let actions = {
       type: 'ADD_TODO',
       text: text,
       timestamp: timestamp,
-      author: author
+      author: author,
     }
   },
 
   // Adding ID as a property binds the id to the action.
-  completeTodo: (id, color) => {
+  completeTodo: (id) => {
     return {
       type: 'COMPLETE_TODO',
       id: id,
-      color: color
     }
   },
 
   // Adding ID as a property binds the id to the action.
-  undoCompleteTodo: (id, color) => {
+  undoCompleteTodo: (id) => {
     return {
       type: 'UNDO_COMPLETE_TODO',
       id: id,
-      color: color
     }
   },
 

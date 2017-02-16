@@ -8,7 +8,7 @@ class TodoItem extends Component {
 
     this.state = {
       btnColor: { color: "black" },
-      btnCaption: "Mark as completed",
+      btnCaption: "Mark Complete",
       strikethrough: {},
       todoOpacity: {}
     }
@@ -43,14 +43,20 @@ class TodoItem extends Component {
     return this.props.todo.completed ? this.handleUndoComplete() : this.handleComplete() ;
   }
 
+  todoText() {
+    return this.props.todo.text === "" ? "Untitled" : this.props.todo.text;
+  }
+
   render() {
     return (
-      <li className="todoItem" style={this.state.todoOpacity}>
-        <h1 style={this.state.strikethrough}>{this.props.todo.text}</h1>
-        <span className="todoItemAuthor">Added By: {this.props.todo.author.name}</span>
-        <span className="todoItemTimestamp">Created at: {this.props.todo.timestamp}</span>
-        <button onClick={this.toggleCompletion.bind(this)} style={this.state.btnColor}>{this.state.btnCaption}</button>
-        <button onClick={this.handleDelete.bind(this)}>Delete Todo</button>
+      <li className="todoItem">
+        <div style={this.state.todoOpacity}> 
+          <h1 style={this.state.strikethrough}>{this.todoText()}</h1>
+          <div className="todoItemAuthor">Added By: {this.props.todo.author.name}</div>
+          <span className="todoItemTimestamp">Created at: {this.props.todo.timestamp}</span>
+          <button onClick={this.toggleCompletion.bind(this)} style={this.state.btnColor}>{this.state.btnCaption}</button>
+          <button onClick={this.handleDelete.bind(this)}>Delete Todo</button>
+        </div>
       </li>
     );
   }

@@ -35,8 +35,9 @@ class TodoInput extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <input type="text" defaultValue="" placeholder="type todo here" value={this.state.inputText}
+          <input className="todoInputInput" type="text" defaultValue="" placeholder="Todo Title" value={this.state.inputText}
             onChange={this.handleChange.bind(this)}></input>
+          <textarea className="todoInputTextArea"></textarea>
           <input type="submit" text="submit"></input>
         </form>
       </div>

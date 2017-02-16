@@ -30,7 +30,7 @@ class UserInfo extends Component {
   render() {
     return (
       <div>
-        <li>
+        <li className="userInfo">
           <div>User: {this.props.user.name}</div>
           <div>ID: {this.props.user.id}</div>
           <button onClick={this.handleNewId.bind(this)}>Update with new ID</button>

@@ -10,7 +10,8 @@ export default function todos(todos = [], action) {
     // A new todo is assigned a unique ID so that future todos don't share IDs
     case 'ADD_TODO':
       return [{
-        text: action.text,
+        title: action.title,
+        body: action.body,
         completed: false,
         strikethrough: false,
         timestamp: action.timestamp,

@@ -8,25 +8,31 @@ class TodoInput extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      inputText: ""
+      inputTitle: "",
+      inputBody: ""
     }
   }
 
   // handleChange listens for and detects text input box changes.
-  handleChange(event) {
+  handleTitleChange(event) {
     this.setState({
-      inputText: event.target.value
+      inputTitle: event.target.value
+    })
+  }
+
+  handleBodyChange(event) {
+    this.setState({
+      inputBody: event.target.value
     })
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.addTodo(this.state.inputText,
+    this.props.addTodo(this.state.inputTitle, this.state.inputBody,
       moment().format('MMMM Do YYYY, h:mm:ss a'), this.props.user);
-    this.state.inputText = "";
+    this.state.inputTitle = "";
+    this.state.inputBody = "";
   }
-
-
 
   // pass in this.state.input.text as a pseudo attribute to the dumb TextDisplay component
   // this creates a this.props.text property for TextDisplay component
@@ -35,9 +41,9 @@ class TodoInput extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <input className="todoInputInput" type="text" defaultValue="" placeholder="Todo Title" value={this.state.inputText}
-            onChange={this.handleChange.bind(this)}></input>
-          <textarea className="todoInputTextArea"></textarea>
+          <input className="todoInputInput" type="text" defaultValue="" placeholder="Todo Title" value={this.state.inputTitle}
+            onChange={this.handleTitleChange.bind(this)}></input>
+          <textarea className="todoInputTextArea" value={this.state.inputBody} onChange={this.handleBodyChange.bind(this)}></textarea>
           <input type="submit" text="submit"></input>
         </form>
       </div>

@@ -43,15 +43,16 @@ class TodoItem extends Component {
     return this.props.todo.completed ? this.handleUndoComplete() : this.handleComplete() ;
   }
 
-  todoText() {
-    return this.props.todo.text === "" ? "Untitled" : this.props.todo.text;
+  todoTitle() {
+    return this.props.todo.title === "" ? "Untitled" : this.props.todo.title;
   }
 
   render() {
     return (
       <li className="todoItem">
         <div style={this.state.todoOpacity}> 
-          <h1 style={this.state.strikethrough}>{this.todoText()}</h1>
+          <h1 style={this.state.strikethrough}>{this.todoTitle()}</h1>
+          <p>{this.props.todo.body}</p>
           <div className="todoItemAuthor">Added By: {this.props.todo.author.name}</div>
           <span className="todoItemTimestamp">Created at: {this.props.todo.timestamp}</span>
           <button onClick={this.toggleCompletion.bind(this)} style={this.state.btnColor}>{this.state.btnCaption}</button>

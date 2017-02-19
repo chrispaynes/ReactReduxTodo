@@ -43,7 +43,7 @@ export default function todos(todos = [], action) {
     case 'EDIT_TODO':
       return todos.map((todo) => {
         return todo.id === action.id ?
-          Object.assign({}, todo, { body: action.body }) : todo;
+          Object.assign({}, todo, { body: action.body, editTimestamp: action.editTimestamp }) : todo;
       })
 
     default:

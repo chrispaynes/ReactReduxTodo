@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import moment from 'moment';
 
 class TodoItem extends Component {
 
@@ -11,7 +12,7 @@ class TodoItem extends Component {
       btnCaption: "Mark Complete",
       strikethrough: {},
       todoOpacity: {},
-      todoBody: this.decorateProp(this.props.todo.body, "p")
+      todoBody: this.props.todo.body
     }
   };
 
@@ -20,13 +21,13 @@ class TodoItem extends Component {
   }
 
   handleEdit() {
+    console.table(this.state.todoBody)
     this.setState({
-      todoBody: this.decorateProp(this.props.todo.body, "textarea")
-    })
-    this.props.actions.editTodo(this.props.todo.id, this.state.todoBody)
+      todoBody: this.decorateProp(this.state.todoBody, "textarea", { onBlur: this.handleBodyChange.bind(this) })
+    });
   }
 
-  handleComplete() {
+  handleComplete(event) {
     this.props.actions.completeTodo(this.props.todo.id);
     this.setState({
       btnColor: { color: 'red' },
@@ -47,6 +48,18 @@ class TodoItem extends Component {
     });
   }
 
+  handleBodyChange(event) {
+    event.preventDefault();
+    this.handleSubmit(event.target.value);
+    this.setState({
+      todoBody: event.target.value
+    })
+  }
+
+  handleSubmit(editedTodo) {
+    this.props.actions.editTodo(this.props.todo.id, editedTodo, moment().format('MMMM Do YYYY, h:mm:ss a'));
+  }
+
   toggleCompletion() {
     return this.props.todo.completed ? this.handleUndoComplete() : this.handleComplete();
   }
@@ -57,8 +70,8 @@ class TodoItem extends Component {
   }
 
   // decorateProp decorates properties with an HTML element.
-  decorateProp(todoBody, decorator) {
-    return React.createElement(decorator, null, todoBody);
+  decorateProp(todoBody, decorator, props) {
+    return React.createElement(decorator, props, todoBody);
   }
 
   render() {
@@ -68,7 +81,8 @@ class TodoItem extends Component {
           <h1 style={this.state.strikethrough}>{this.todoTitle()}</h1>
           {this.state.todoBody}
           <div className="todoItemAuthor">Added By: {this.props.todo.author.name}</div>
-          <span className="todoItemTimestamp">Created at: {this.props.todo.timestamp}</span>
+          <div className="todoItemTimestamp">Created at: {this.props.todo.timestamp}</div>
+          <div className="todoItemTimestamp">Last Edited at: {this.props.todo.editTimestamp}</div>
           <button onClick={this.toggleCompletion.bind(this)} style={this.state.btnColor}>{this.state.btnCaption}</button>
           <button onClick={this.handleEdit.bind(this)}>Edit Todo</button>
           <button onClick={this.handleDelete.bind(this)}>Delete Todo</button>

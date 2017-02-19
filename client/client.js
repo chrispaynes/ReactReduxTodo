@@ -35,6 +35,7 @@ let initialState = {
     title: 'Initial todo title',
     body: 'Initial todo body',
     timestamp: moment().format('MMMM Do YYYY, h:mm:ss a'),
+    editTimestamp: null,
     author: {
       id: seedAuthorID,
       name: `User${seedAuthorID}`

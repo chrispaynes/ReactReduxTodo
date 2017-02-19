@@ -37,11 +37,12 @@ let actions = {
     }
   },
 
-  editTodo: (id, body) => {
+  editTodo: (id, body, editTimestamp) => {
     return {
       type: 'EDIT_TODO',
       id: id,
-      body: body
+      body: body,
+      editTimestamp: editTimestamp
     }
   },
 

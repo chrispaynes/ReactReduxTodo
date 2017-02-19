@@ -90,7 +90,8 @@ App.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       completed: PropTypes.bool.isRequired,
-      text: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      body: PropTypes.string.isRequired,
       user: React.PropTypes.shape({
         name: React.PropTypes.string.isRequired,
         id: PropTypes.number.isRequired

@@ -19,29 +19,34 @@ export default function todos(todos = [], action) {
         id: getId(todos)
                 }, ...todos];
 
-      // COMPLETE_TODO returns completed todo if the todo.id matches, if not then return the current todo.
-      // Object.assign copies an enumerables's key/value pairs to a target object and returns the object.
+    // COMPLETE_TODO returns completed todo if the todo.id matches, if not then return the current todo.
+    // Object.assign copies an enumerables's key/value pairs to a target object and returns the object.
     case 'COMPLETE_TODO':
       return todos.map((todo) => {
         return todo.id === action.id ?
           Object.assign({}, todo, { completed: true, strikethrough: true }) : todo;
       })
 
-      // COMPLETE_TODO returns completed todo if the todo.id matches, if not then return the current todo.
+    // COMPLETE_TODO returns completed todo if the todo.id matches, if not then return the current todo.
     case 'UNDO_COMPLETE_TODO':
       return todos.map((todo) => {
         return todo.id === action.id ?
           Object.assign({}, todo, { completed: false, strikethrough: false }) : todo;
       })
 
-      // 'DELETE_TODO' filters the deleted todo and returns all unfiltered todos.
+    // 'DELETE_TODO' filters the deleted todo and returns all unfiltered todos.
     case 'DELETE_TODO':
       return todos.filter((todo) => {
         return todo.id !== action.id;
+      })
+
+    case 'EDIT_TODO':
+      return todos.map((todo) => {
+        return todo.id === action.id ?
+          Object.assign({}, todo, { body: action.body }) : todo;
       })
 
     default:
       return todos;
   }
 }
-

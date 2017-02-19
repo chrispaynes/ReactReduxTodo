@@ -37,6 +37,14 @@ let actions = {
     }
   },
 
+  editTodo: (id, body) => {
+    return {
+      type: 'EDIT_TODO',
+      id: id,
+      body: body
+    }
+  },
+
   createNewUserId: () => {
     let id = Math.floor(Math.random() * 100);
     return {

@@ -32,8 +32,8 @@ let initialState = {
     id: 0,
     completed: false,
     strikethrough: false,
-    title: 'Initial todo.text',
-    body: '',
+    title: 'Initial todo title',
+    body: 'Initial todo body',
     timestamp: moment().format('MMMM Do YYYY, h:mm:ss a'),
     author: {
       id: seedAuthorID,
